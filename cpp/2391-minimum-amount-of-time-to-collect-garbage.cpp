@@ -11,25 +11,20 @@
 #include <string>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    int garbageCollection(vector<string> &garbage, vector<int> &travel)
-    {
+    int garbageCollection(vector<string> &garbage, vector<int> &travel) {
         int totalTime = 0;
         bool lastHouse[3] = {false};
         string garbageTypes[3] = {"M", "P", "G"};
 
-        for (int house = garbage.size() - 1; house >= 0; house--)
-        {
+        for (int house = garbage.size() - 1; house >= 0; house--) {
             totalTime += garbage[house].length();
 
-            for (int g = 0; g < 3; g++)
-            {
+            for (int g = 0; g < 3; g++) {
                 lastHouse[g] = lastHouse[g] || garbage[house].find(garbageTypes[g]) != -1;
 
-                if (lastHouse[g] && house > 0)
-                {
+                if (lastHouse[g] && house > 0) {
                     totalTime += travel[house - 1];
                 }
             }
