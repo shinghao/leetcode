@@ -2,20 +2,19 @@
     Time -> O(n), Space -> O(1)
 */
 
-#include <vector>
+#include<vector>
+#include<algorithm>
+using namespace std;
 
 class Solution {
 public:
-    int minCostClimbingStairs(std::vector<int>& cost) {
-        int a = cost[0];
-        int b = cost[1];
+    int minCostClimbingStairs(vector<int>& cost) {
+        int n = cost.size();
 
-        for (int i = 2; i < cost.size(); i++) {
-            int curStep = std::min(a, b) + cost[i];
-            a = b;
-            b = curStep;
+        for (int i = 2; i < n; i++) {
+            cost[i] += min(cost[i - 1], cost[i - 2]);
         }
         
-        return std::min(a, b);
+        return min(cost[n - 1], cost[n - 2]);
     }
 };
